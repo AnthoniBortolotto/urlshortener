@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface UrlMappingRepository extends MongoRepository<UrlMapping, String> {
     Optional<UrlMapping> findByOriginalUrl(String originalUrl);
+    boolean existsByOriginalUrl(String originalUrl);
 } 

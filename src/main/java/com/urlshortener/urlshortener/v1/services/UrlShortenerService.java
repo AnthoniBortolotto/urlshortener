@@ -28,6 +28,11 @@ public class UrlShortenerService {
     public UrlMapping createShortUrl(String originalUrl) {
         validateUrl(originalUrl);
         UrlMapping urlMapping = new UrlMapping(originalUrl);
+        // Check if the URL already exists
+        if (urlMappingRepository.existsByOriginalUrl(originalUrl)) {
+            return urlMappingRepository.findByOriginalUrl(originalUrl)
+                .orElseThrow(() -> new InvalidUrlException(originalUrl));
+        }
         urlMappingRepository.save(urlMapping);
         return urlMapping;
     }
