@@ -1,6 +1,7 @@
 package com.urlshortener.urlshortener.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class UrlMapping {
     @Id
     private String shortUrl;
     
+    @Indexed(unique = true)
     private String originalUrl;
     private LocalDateTime createdAt;
     private LocalDateTime lastAccessedAt;
